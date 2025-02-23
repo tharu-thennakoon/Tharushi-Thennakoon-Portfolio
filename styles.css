@@ -1,31 +1,40 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
+
+/* --------- General Styles --------- */
 body {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 15vh;
-    background: #06021b;
+    background: #0B132B; /* Dark Blue */
+    color: #fff;
 }
+
+/* ------------------------------------ Navigation Bar -----------------
+----------------------------------------------------------------------- */
 .navigation {
     position: relative;
     width: 900px;
     height: 70px;
-    background: linear-gradient(45deg, #2196f3, #e91e63);
+    background: #1C2541; /* Deep Blue */
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 10px;
 }
+
 .navigation ul {
     display: flex;
     width: 350px;
 }
+
 .navigation ul li {
     position: relative;
     width: 70px;
@@ -33,6 +42,7 @@ body {
     list-style: none;
     z-index: 1;
 }
+
 .navigation ul li a {
     position: relative;
     display: flex;
@@ -42,19 +52,24 @@ body {
     width: 100%;
     text-align: center;
     font-weight: 500;
+    color: #fff;
+    transition: 0.3s;
 }
+
 .navigation ul li a .icon {
     position: relative;
     display: block;
     line-height: 75px;
     font-size: 1.5em;
     text-align: center;
-    color: #fff;
     transition: .5s;
 }
+
 .navigation ul li.active a .icon {
     transform: translateY(-32px);
+    color: #5BC0BE; /* Cyan Blue */
 }
+
 .navigation ul li a .text {
     position: absolute;
     color: #fff;
@@ -65,10 +80,13 @@ body {
     transform: translateY(20px);
     transition: .5s;
 }
+
 .navigation ul li.active a .text {
     opacity: 1;
     transform: translateY(10px);
+    color: #5BC0BE; /* Cyan Blue */
 }
+
 .navigation ul li a .circle {
     position: absolute;
     display: block;
@@ -76,27 +94,30 @@ body {
     height: 50px;
     background: transparent;
     border-radius: 50%;
-    border: 1.8px solid #fff;
+    border: 1.8px solid #5BC0BE; /* Cyan Blue */
     transform: translateY(-37px) scale(0);
 }
+
 .navigation ul li.active a .circle {
     transition: .5s;
     transition-delay: .5s;
     transform: translateY(-37px) scale(1);
 }
+
 .indicator {
     position: absolute;
     top: -50%;
     width: 70px;
     height: 70px;
-    background: linear-gradient(45deg, #2196f3, #e91e63);
-    border: 6px solid #06021b;
+    background: #3A506B; /* Blue-Gray */
+    border: 6px solid #0B132B; /* Dark Blue */
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
     transition: .5s;
 }
+
 .indicator::before {
     content: '';
     position: absolute;
@@ -106,8 +127,9 @@ body {
     height: 20px;
     background: transparent;
     border-top-right-radius: 20px;
-    box-shadow: 1px -10px 0 #06021b;
+    box-shadow: 1px -10px 0 #0B132B;
 }
+
 .indicator::after {
     content: '';
     position: absolute;
@@ -117,8 +139,9 @@ body {
     height: 20px;
     background: transparent;
     border-top-left-radius: 20px;
-    box-shadow: -1px -10px 0 #06021b;
+    box-shadow: -1px -10px 0 #0B132B;
 }
+
 .navigation ul li:nth-child(1).active~.indicator {
     transform: translateX(calc(70px * 0));
 }
@@ -133,4 +156,30 @@ body {
 }
 .navigation ul li:nth-child(5).active~.indicator {
     transform: translateX(calc(70px * 4));
+}
+
+/* --------- Scroll to Top Circle Button --------- */
+#scrollToTop {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background: #1C2541; /* Deep Blue */
+    color: #5BC0BE; /* Cyan Blue */
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    align-items: center;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+}
+
+#scrollToTop:hover {
+    background: #3A506B; /* Blue-Gray */
+    transform: scale(1.1);
+}
+
+#scrollToTop ion-icon {
+    font-size: 24px;
 }
