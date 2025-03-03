@@ -8,10 +8,11 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Navigation Bar -->
     <div class="navigation">
         <ul>
-            <li class="list active">
-                <a href="#">
+            <li class="list active" data-section="home">
+                <a href="#home">
                     <span class="icon">
                         <ion-icon name="home-outline"></ion-icon>
                     </span>
@@ -19,8 +20,8 @@
                     <span class="circle"></span>
                 </a>
             </li>
-            <li class="list">
-                <a href="#">
+            <li class="list" data-section="about">
+                <a href="#about">
                     <span class="icon">
                         <ion-icon name="person-outline"></ion-icon>
                     </span>
@@ -28,8 +29,8 @@
                     <span class="circle"></span>
                 </a>
             </li>
-            <li class="list">
-                <a href="#">
+            <li class="list" data-section="skills">
+                <a href="#skills">
                     <span class="icon">
                         <ion-icon name="barcode-outline"></ion-icon>
                     </span>
@@ -37,17 +38,17 @@
                     <span class="circle"></span>
                 </a>
             </li>
-            <li class="list">
-                <a href="#">
+            <li class="list" data-section="projects">
+                <a href="#projects">
                     <span class="icon">
                         <ion-icon name="laptop-outline"></ion-icon>
                     </span>
-                    <span class="text">projects</span>
+                    <span class="text">Projects</span>
                     <span class="circle"></span>
                 </a>
             </li>
-            <li class="list">
-                <a href="#">
+            <li class="list" data-section="contact">
+                <a href="#contact">
                     <span class="icon">
                         <ion-icon name="person-circle-outline"></ion-icon>
                     </span>
@@ -59,10 +60,212 @@
         </ul>
     </div>
 
-    <!-- Scroll to Top Button (Circular with Arrow) -->
+    <!-- Main Content Container -->
+    <div class="content-container">
+        <!-- Home Section -->
+        <section id="home" class="section active">
+            <div class="hero">
+                <div class="hero-text">
+                    <h1>Tharushi Thennakoon</h1>
+                    <h2>Web Developer & Designer</h2>
+                    <p>Creating beautiful and functional web experiences</p>
+                    <a href="#contact" class="btn">Get in Touch</a>
+                </div>
+                <div class="hero-image">
+                    <div class="profile-image"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Hello! I'm Tharushi, a passionate web developer with a keen eye for design and a love for creating seamless user experiences. With a background in [Your Background], I combine technical expertise with creative problem-solving.</p>
+                    <p>My journey in web development began [Your Story]. Since then, I've been constantly learning and evolving my skills to stay at the forefront of web technologies.</p>
+                    <p>When I'm not coding, you can find me [Your Hobbies/Interests].</p>
+                </div>
+                <div class="about-details">
+                    <div class="detail-item">
+                        <ion-icon name="school-outline"></ion-icon>
+                        <div>
+                            <h3>Education</h3>
+                            <p>Your Degree, University Name</p>
+                            <p>Graduation Year</p>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <ion-icon name="briefcase-outline"></ion-icon>
+                        <div>
+                            <h3>Experience</h3>
+                            <p>Your Position, Company Name</p>
+                            <p>Duration</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="section">
+            <h2 class="section-title">My Skills</h2>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3>Frontend</h3>
+                    <div class="skills-grid">
+                        <div class="skill-item">
+                            <div class="skill-icon"><ion-icon name="logo-html5"></ion-icon></div>
+                            <p>HTML5</p>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon"><ion-icon name="logo-css3"></ion-icon></div>
+                            <p>CSS3</p>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon"><ion-icon name="logo-javascript"></ion-icon></div>
+                            <p>JavaScript</p>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 80%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Backend</h3>
+                    <div class="skills-grid">
+                        <div class="skill-item">
+                            <div class="skill-icon"><ion-icon name="server-outline"></ion-icon></div>
+                            <p>Node.js</p>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 75%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon"><ion-icon name="logo-python"></ion-icon></div>
+                            <p>Python</p>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 70%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Other</h3>
+                    <div class="skills-grid">
+                        <div class="skill-item">
+                            <div class="skill-icon"><ion-icon name="git-branch-outline"></ion-icon></div>
+                            <p>Git</p>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon"><ion-icon name="brush-outline"></ion-icon></div>
+                            <p>UI/UX Design</p>
+                            <div class="skill-bar">
+                                <div class="skill-level" style="width: 85%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="section">
+            <h2 class="section-title">My Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image"></div>
+                    <h3>Project Title 1</h3>
+                    <p>A brief description of your project. Explain what technologies you used and what problems you solved.</p>
+                    <div class="project-links">
+                        <a href="#" class="project-link"><ion-icon name="globe-outline"></ion-icon> Live Demo</a>
+                        <a href="#" class="project-link"><ion-icon name="logo-github"></ion-icon> GitHub</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image"></div>
+                    <h3>Project Title 2</h3>
+                    <p>A brief description of your project. Explain what technologies you used and what problems you solved.</p>
+                    <div class="project-links">
+                        <a href="#" class="project-link"><ion-icon name="globe-outline"></ion-icon> Live Demo</a>
+                        <a href="#" class="project-link"><ion-icon name="logo-github"></ion-icon> GitHub</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image"></div>
+                    <h3>Project Title 3</h3>
+                    <p>A brief description of your project. Explain what technologies you used and what problems you solved.</p>
+                    <div class="project-links">
+                        <a href="#" class="project-link"><ion-icon name="globe-outline"></ion-icon> Live Demo</a>
+                        <a href="#" class="project-link"><ion-icon name="logo-github"></ion-icon> GitHub</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section">
+            <h2 class="section-title">Get in Touch</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <ion-icon name="mail-outline"></ion-icon>
+                        <p>your.email@example.com</p>
+                    </div>
+                    <div class="contact-item">
+                        <ion-icon name="call-outline"></ion-icon>
+                        <p>+XX XXX XXX XXXX</p>
+                    </div>
+                    <div class="contact-item">
+                        <ion-icon name="location-outline"></ion-icon>
+                        <p>Your Location</p>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><ion-icon name="logo-linkedin"></ion-icon></a>
+                        <a href="#" class="social-link"><ion-icon name="logo-github"></ion-icon></a>
+                        <a href="#" class="social-link"><ion-icon name="logo-twitter"></ion-icon></a>
+                        <a href="#" class="social-link"><ion-icon name="logo-instagram"></ion-icon></a>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="subject" name="subject" placeholder="Subject" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" name="message" placeholder="Your Message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Scroll to Top Button -->
     <button id="scrollToTop">
         <ion-icon name="arrow-up-outline"></ion-icon>
     </button>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 Tharushi Thennakoon. All Rights Reserved.</p>
+    </footer>
 
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
