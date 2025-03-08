@@ -118,3 +118,35 @@ if (contactForm) {
         contactForm.reset();
     });
 }
+
+const textArray = ["Full Stack Developer", "Web Developer", "UI/UX Designer"];
+let textIndex = 0;
+let charIndex = 0;
+const typingText = document.querySelector(".typing-text");
+
+function typeText() {
+    if (charIndex < textArray[textIndex].length) {
+        typingText.innerHTML += textArray[textIndex].charAt(charIndex);
+        charIndex++;
+        setTimeout(typeText, 100);
+    } else {
+        setTimeout(eraseText, 1500);
+    }
+}
+
+function eraseText() {
+    if (charIndex > 0) {
+        typingText.innerHTML = textArray[textIndex].substring(0, charIndex - 1);
+        charIndex--;
+        setTimeout(eraseText, 50);
+    } else {
+        textIndex = (textIndex + 1) % textArray.length;
+        setTimeout(typeText, 500);
+    }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    setTimeout(typeText, 500);
+});
+
+
