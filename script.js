@@ -139,3 +139,47 @@ backToTopBtn.addEventListener('click', () => {
         behavior: 'smooth'
     });
 });
+
+// Typing Animation
+document.addEventListener('DOMContentLoaded', function() {
+    const typingElement = document.querySelector('.typing');
+    const words = ["Web Developer", "UI/UX Designer", "Graphic Designer", "Freelancer"];
+    let wordIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    let typeSpeed = 100;
+
+    function type() {
+        const currentWord = words[wordIndex];
+        
+        if (isDeleting) {
+            // Remove character
+            typingElement.textContent = currentWord.substring(0, charIndex - 1);
+            charIndex--;
+            typeSpeed = 50;
+        } else {
+            // Add character
+            typingElement.textContent = currentWord.substring(0, charIndex + 1);
+            charIndex++;
+            typeSpeed = 100;
+        }
+
+        // If word is complete
+        if (!isDeleting && charIndex === currentWord.length) {
+            // Pause at end of word
+            isDeleting = true;
+            typeSpeed = 1000;
+        } 
+        // If word is deleted
+        else if (isDeleting && charIndex === 0) {
+            isDeleting = false;
+            wordIndex = (wordIndex + 1) % words.length;
+            typeSpeed = 500;
+        }
+
+        setTimeout(type, typeSpeed);
+    }
+
+    // Start typing effect
+    setTimeout(type, 1000);
+});

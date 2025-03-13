@@ -10,7 +10,7 @@ html {
 }
 
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
     color: #fff;
     background-color: #0d0d0e;
@@ -120,6 +120,7 @@ header .container {
 }
 
 /* Hero Section */
+/* Hero Section */
 .hero {
     position: relative;
     height: 100vh;
@@ -154,6 +155,13 @@ header .container {
     font-weight: 700;
     margin-bottom: 20px;
     line-height: 1.2;
+}
+
+.hero-text h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 20px;
 }
 
 .hero-text p {
@@ -198,14 +206,124 @@ header .container {
     color: #fff;
 }
 
+/* Hero Image Styling */
+/* Alternative Hero Image Styling */
 .hero-image {
     width: 45%;
-    height: 500px;
-    background-image: url('https://via.placeholder.com/500x600');
-    background-size: cover;
-    background-position: center;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
+.hero-image img {
+    max-width: 85%;
+    height: auto;
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    object-fit: cover;
+    box-shadow: 0 10px 30px rgba(233, 69, 96, 0.3);
+    transition: all 0.5s ease;
+    z-index: 2;
+}
+
+.hero-image:before {
+    content: '';
+    position: absolute;
+    width: 85%;
+    height: 100%;
+    background: linear-gradient(45deg, #e94560, #ff7d95);
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    top: -5%;
+    left: 5%;
+    z-index: 1;
+    opacity: 0.7;
+    animation: morphing 8s ease-in-out infinite;
+}
+
+.hero-image:after {
+    content: '';
+    position: absolute;
+    width: 80%;
+    height: 95%;
+    border: 3px dashed rgba(233, 69, 96, 0.4);
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    top: 5%;
+    right: 5%;
+    z-index: 1;
+    animation: morphing 8s ease-in-out infinite reverse;
+}
+
+.hero-image img:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(233, 69, 96, 0.4);
+}
+
+@keyframes morphing {
+    0% {
+        border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    }
+    25% {
+        border-radius: 58% 42% 75% 25% / 76% 46% 54% 24%;
+    }
+    50% {
+        border-radius: 50% 50% 33% 67% / 55% 27% 73% 45%;
+    }
+    75% {
+        border-radius: 33% 67% 58% 42% / 63% 68% 32% 37%;
+    }
+    100% {
+        border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    }
+}
+
+/* Optional: Add floating animation */
+@keyframes floating {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-15px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+/* Add this class to the img if you want the floating effect instead of the hover effect */
+.floating-image {
+    animation: floating 6s ease-in-out infinite;
+}
+
+/* Typing Effect */
+.typing {
+    color: #e94560;
+    position: relative;
+    border-right: 3px solid #e94560;
+    white-space: nowrap;
+    overflow: hidden;
+    animation: typing 3.5s steps(30, end), blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: #e94560 }
+}
+
+/* Network Background */
+.network-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.5;
+}
 /* Network Background */
 .network-bg {
     position: absolute;
