@@ -1,152 +1,141 @@
-// Show all sections on page load
-document.addEventListener('DOMContentLoaded', function() {
-    const sections = document.querySelectorAll('.section');
-    sections.forEach(section => {
-        section.style.display = 'block'; // Make all sections visible
-        section.classList.remove('active');
-    });
-    
-    // Remove the .active class logic that was hiding sections
-    document.querySelector('#home').classList.add('active');
-    
-    // Highlight active navigation based on scroll position
-    window.addEventListener('scroll', highlightNavOnScroll);
+// DOM Elements
+const hamburger = document.querySelector('.hamburger');
+const navMenu = document.querySelector('.nav-menu');
+const header = document.querySelector('header');
+const backToTopBtn = document.getElementById('back-to-top');
+
+// Toggle Mobile Menu
+hamburger.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
+    hamburger.classList.toggle('active');
 });
 
-// Function to highlight navigation based on scroll position
-function highlightNavOnScroll() {
-    const sections = document.querySelectorAll('.section');
-    const navItems = document.querySelectorAll('.list');
-    
-    let currentSection = '';
-    
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        
-        if (pageYOffset >= (sectionTop - 200)) {
-            currentSection = section.getAttribute('id');
-        }
-    });
-    
-    navItems.forEach(item => {
-        item.classList.remove('active');
-        if (item.getAttribute('data-section') === currentSection) {
-            item.classList.add('active');
-        }
-    });
-    
-    // Update the indicator position
-    updateIndicator(currentSection);
-}
-
-// Update the indicator position based on active section
-function updateIndicator(currentSection) {
-    const indicator = document.querySelector('.indicator');
-    const activeItem = document.querySelector(`.list[data-section="${currentSection}"]`);
-    
-    if (activeItem && indicator) {
-        const index = Array.from(activeItem.parentElement.children).indexOf(activeItem);
-        let width = 70; // Default width
-        
-        // Responsive adjustments
-        if (window.innerWidth <= 600) {
-            width = 60;
-        } else if (window.innerWidth <= 900) {
-            width = 64;
-        }
-        
-        indicator.style.transform = `translateX(calc(${width}px * ${index}))`;
-    }
-}
-
-// Preserve click navigation functionality
-const list = document.querySelectorAll('.list');
-list.forEach((item) => {
-    item.addEventListener('click', function(e) {
-        e.preventDefault();
-        
-        // Update active class
-        list.forEach((el) => el.classList.remove('active'));
-        this.classList.add('active');
-        
-        // Smooth scroll to section
-        const sectionId = this.getAttribute('data-section');
-        const section = document.getElementById(sectionId);
-        
-        if (section) {
-            window.scrollTo({
-                top: section.offsetTop - 100,
-                behavior: 'smooth'
-            });
-        }
+// Close mobile menu when clicking a nav link
+document.querySelectorAll('.nav-menu a').forEach(link => {
+    link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+        hamburger.classList.remove('active');
     });
 });
 
-// Scroll to Top Button functionality
-const scrollToTopBtn = document.getElementById("scrollToTop");
-
-window.onscroll = function() {
-    if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
-        scrollToTopBtn.style.display = "flex";
-    } else {
-        scrollToTopBtn.style.display = "none";
+// Network Background Animation
+document.addEventListener('DOMContentLoaded', () => {
+    const networkBg = document.querySelector('.network-bg');
+    
+    // Create canvas for network animation
+    const canvas = document.createElement('canvas');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    networkBg.appendChild(canvas);
+    
+    const ctx = canvas.getContext('2d');
+    
+    // Particles settings
+    const particlesArray = [];
+    const numberOfParticles = 50;
+    const connectDistance = 150;
+    
+    // Create particles
+    class Particle {
+        constructor() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.size = Math.random() * 2 + 1;
+            this.speedX = (Math.random() - 0.5) * 0.5;
+            this.speedY = (Math.random() - 0.5) * 0.5;
+        }
+        
+        update() {
+            this.x += this.speedX;
+            this.y += this.speedY;
+            
+            // Bounce off edges
+            if (this.x > canvas.width || this.x < 0) {
+                this.speedX = -this.speedX;
+            }
+            if (this.y > canvas.height || this.y < 0) {
+                this.speedY = -this.speedY;
+            }
+        }
+        
+        draw() {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fillStyle = '#e94560';
+            ctx.fill();
+        }
     }
-};
-
-scrollToTopBtn.onclick = function() {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-};
-
-// Contact form submission
-const contactForm = document.getElementById('contactForm');
-if (contactForm) {
-    contactForm.addEventListener('submit', function(e) {
-        e.preventDefault();
+    
+    // Initialize particles
+    function init() {
+        for (let i = 0; i < numberOfParticles; i++) {
+            particlesArray.push(new Particle());
+        }
+    }
+    
+    // Connect particles with lines
+    function connect() {
+        for (let i = 0; i < particlesArray.length; i++) {
+            for (let j = i + 1; j < particlesArray.length; j++) {
+                const dx = particlesArray[i].x - particlesArray[j].x;
+                const dy = particlesArray[i].y - particlesArray[j].y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                
+                if (distance < connectDistance) {
+                    ctx.beginPath();
+                    ctx.strokeStyle = `rgba(233, 69, 96, ${1 - distance/connectDistance})`;
+                    ctx.lineWidth = 1;
+                    ctx.moveTo(particlesArray[i].x, particlesArray[i].y);
+                    ctx.lineTo(particlesArray[j].x, particlesArray[j].y);
+                    ctx.stroke();
+                }
+            }
+        }
+    }
+    
+    // Animation loop
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
         
-        // Get form data
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('email').value;
-        const subject = document.getElementById('subject').value;
-        const message = document.getElementById('message').value;
+        for (let i = 0; i < particlesArray.length; i++) {
+            particlesArray[i].update();
+            particlesArray[i].draw();
+        }
         
-        // Here you would typically send this data to your server
-        // For this demo, we'll just show an alert
-        alert(`Thank you for your message, ${name}! I'll get back to you soon.`);
-        
-        // Reset form
-        contactForm.reset();
+        connect();
+        requestAnimationFrame(animate);
+    }
+    
+    // Handle window resize
+    window.addEventListener('resize', () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
     });
-}
-
-const textArray = ["Full Stack Developer", "Web Developer", "UI/UX Designer"];
-let textIndex = 0;
-let charIndex = 0;
-const typingText = document.querySelector(".typing-text");
-
-function typeText() {
-    if (charIndex < textArray[textIndex].length) {
-        typingText.innerHTML += textArray[textIndex].charAt(charIndex);
-        charIndex++;
-        setTimeout(typeText, 100);
-    } else {
-        setTimeout(eraseText, 1500);
-    }
-}
-
-function eraseText() {
-    if (charIndex > 0) {
-        typingText.innerHTML = textArray[textIndex].substring(0, charIndex - 1);
-        charIndex--;
-        setTimeout(eraseText, 50);
-    } else {
-        textIndex = (textIndex + 1) % textArray.length;
-        setTimeout(typeText, 500);
-    }
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-    setTimeout(typeText, 500);
+    
+    init();
+    animate();
 });
 
+// Sticky Header
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 100) {
+        header.classList.add('sticky');
+    } else {
+        header.classList.remove('sticky');
+    }
+    
+    // Show or hide back to top button
+    if (window.scrollY > 500) {
+        backToTopBtn.classList.add('active');
+    } else {
+        backToTopBtn.classList.remove('active');
+    }
+});
 
+// Back to top button click
+backToTopBtn.addEventListener('click', () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+});
