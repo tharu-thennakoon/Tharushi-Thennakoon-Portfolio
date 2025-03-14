@@ -1105,6 +1105,78 @@ footer {
     background-color: #d83d58;
 }
 
+/* Status Badge Styles */
+.status-badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #fff;
+    text-transform: uppercase;
+    z-index: 2;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    letter-spacing: 0.5px;
+}
+
+.status-badge.completed {
+    background-color: #d83d58;
+}
+
+.status-badge.in-progress {
+    background-color: #f39c12;
+}
+
+/* Project Description Styles */
+.project-description {
+    margin-top: 10px;
+    margin-bottom: 12px;
+}
+
+.project-description p {
+    font-size: 14px;
+    color: #cccccc;
+    line-height: 1.5;
+}
+
+/* Animation for status badges */
+@keyframes badgeFadeIn {
+    from {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.status-badge {
+    animation: badgeFadeIn 0.5s ease forwards;
+}
+
+/* Responsive styles for badges */
+@media (max-width: 768px) {
+    .status-badge {
+        padding: 4px 10px;
+        font-size: 11px;
+    }
+    
+    .project-description p {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 480px) {
+    .status-badge {
+        padding: 3px 8px;
+        font-size: 10px;
+        top: 10px;
+        left: 10px;
+    }
+}
 /* Animation for filtered items */
 @keyframes fadeIn {
     from {
