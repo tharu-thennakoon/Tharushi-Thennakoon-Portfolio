@@ -143,7 +143,7 @@ backToTopBtn.addEventListener('click', () => {
 // Typing Animation
 document.addEventListener('DOMContentLoaded', function() {
     const typingElement = document.querySelector('.typing');
-    const words = ["Web Developer", "UI/UX Designer", "Graphic Designer", "Freelancer"];
+    const words = ["Undergraduate" , "Full Stack Developer", "Code | Design | Inovation"];
     let wordIndex = 0;
     let charIndex = 0;
     let isDeleting = false;
